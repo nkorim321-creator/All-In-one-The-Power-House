@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Amar Notun Protected Script
 // @version      1.0
-// @description  Super Fast Password Protected Loader
+// @description  Super Fast Password-Protected Loader
 // @match        https://worker.mturk.com/*
 // @grant        GM_xmlhttpRequest
 // @grant        GM_setValue
