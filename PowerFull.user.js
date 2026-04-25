@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Amar Notun Protected Script
+// @name         Protected Script
 // @version      1.0
 // @description  Super Fast Password-Protected Loader
 // @match        https://worker.mturk.com/*
