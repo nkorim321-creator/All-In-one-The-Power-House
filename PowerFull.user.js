@@ -8,6 +8,8 @@
 // @grant        GM_getValue
 // @grant        GM.setValue
 // @grant        GM.getValue
+// @updateURL    https://github.com/nkorim321-creator/All-In-one-The-Power-House/raw/main/PowerFull.user.js
+// @downloadURL  https://github.com/nkorim321-creator/All-In-one-The-Power-House/raw/main/PowerFull.user.js
 // @grant        GM_addStyle
 // @connect      gist.githubusercontent.com
 // ==/UserScript==
