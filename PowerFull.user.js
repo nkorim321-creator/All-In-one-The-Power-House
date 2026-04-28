@@ -72,7 +72,7 @@
     let cachedPayload = await GM_getValue('notun_cached_payload', '');
     let lastFetchTime = await GM_getValue('notun_last_fetch', 0);
     let currentTime = Date.now();
-    let cacheTimeLimit = 60 * 60 * 1000;
+    let cacheTimeLimit = 5 * 60 * 1000;;
 
     if (!cachedPayload || (currentTime - lastFetchTime > cacheTimeLimit)) {
         GM_xmlhttpRequest({
