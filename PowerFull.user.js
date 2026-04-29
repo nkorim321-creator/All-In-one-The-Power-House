@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Protected Script
-// @version      1.02
+// @version      1.03
 // @description  Super Fast Password-Protected Loader
 // @match        https://worker.mturk.com/*
 // @grant        GM_xmlhttpRequest
