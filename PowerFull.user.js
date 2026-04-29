@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Protected Script
-// @version      1.01
+// @version      1.02
 // @description  Super Fast Password-Protected Loader
 // @match        https://worker.mturk.com/*
 // @grant        GM_xmlhttpRequest
@@ -18,7 +18,7 @@
     'use strict';
 
     // Ekhane apnar NOTUN Github Gist er RAW link bosiye diben
-    const PAYLOAD_URL = 'https://gist.githubusercontent.com/nkorim321-creator/95d5deeb3c4261b7fb141e8c13eaaf50/raw/payload.json';
+    const PAYLOAD_URL = 'https://gist.githubusercontent.com/nkorim321-creator/f5bd09e097701a118df5e654ac8b015a/raw/ATN.json';
 
     function b64ToBytes(b64) {
         const raw = atob(b64);
