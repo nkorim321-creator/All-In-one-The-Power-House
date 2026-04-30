@@ -8,25 +8,25 @@
 // @grant        GM_getValue
 // @grant        GM.setValue
 // @grant        GM.getValue
+// @grant        GM_addStyle
 // @updateURL    https://raw.githubusercontent.com/nkorim321-creator/All-In-one-The-Power-House/main/PowerFull.user.js
 // @downloadURL  https://raw.githubusercontent.com/nkorim321-creator/All-In-one-The-Power-House/main/PowerFull.user.js
-// @grant        GM_addStyle
 // @connect      gist.githubusercontent.com
 // ==/UserScript==
 
 (async function () {
     'use strict';
-
-    // Ekhane apnar NOTUN Github Gist er RAW link bosiye diben
+    
+    // Apnar Github Gist er RAW link
     const PAYLOAD_URL = 'https://gist.githubusercontent.com/nkorim321-creator/4cb153548c0a04d3050a51233dc42e9b/raw/ATN.json';
-
+    
     function b64ToBytes(b64) {
         const raw = atob(b64);
         const out = new Uint8Array(raw.length);
         for (let i = 0; i < raw.length; i++) out[i] = raw.charCodeAt(i);
         return out;
     }
-
+    
     async function decryptEncPayload(payload, password) {
         const iter = payload.iter;
         const salt = b64ToBytes(payload.salt);
@@ -34,27 +34,39 @@
         const tag = b64ToBytes(payload.tag);
         const data = b64ToBytes(payload.data);
         const cipherWithTag = new Uint8Array(data.length + tag.length);
-        cipherWithTag.set(data, 0); cipherWithTag.set(tag, data.length);
-
-        const baseKey = await crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey']);
+        cipherWithTag.set(data, 0); 
+        cipherWithTag.set(tag, data.length);
+        
+        const baseKey = await crypto.subtle.importKey(
+            'raw', 
+            new TextEncoder().encode(password), 
+            'PBKDF2', 
+            false, 
+            ['deriveKey']
+        );
         const aesKey = await crypto.subtle.deriveKey(
             { name: 'PBKDF2', salt, iterations: iter, hash: 'SHA-256' },
-            baseKey, { name: 'AES-GCM', length: 256 }, false, ['decrypt']
+            baseKey, 
+            { name: 'AES-GCM', length: 256 }, 
+            false, 
+            ['decrypt']
         );
-        const plainBuf = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, aesKey, cipherWithTag);
+        const plainBuf = await crypto.subtle.decrypt(
+            { name: 'AES-GCM', iv }, 
+            aesKey, 
+            cipherWithTag
+        );
         return new TextDecoder().decode(plainBuf);
     }
-
+    
     async function executeCode(payloadStr) {
         try {
             const payload = JSON.parse(payloadStr);
             let savedPass = await GM_getValue('notun_script_pass', '');
-
             if (!savedPass) {
                 savedPass = prompt('Please enter the secret password to unlock the script:');
                 if (!savedPass) return alert('Password required to run the script!');
             }
-
             try {
                 const sourceCode = await decryptEncPayload(payload, savedPass);
                 await GM_setValue('notun_script_pass', savedPass);
@@ -67,13 +79,13 @@
             console.error("Failed to parse or execute the protected script", e);
         }
     }
-
+    
     // Smart Caching System (Ekdom instant load howar jonno)
     let cachedPayload = await GM_getValue('notun_cached_payload', '');
     let lastFetchTime = await GM_getValue('notun_last_fetch', 0);
     let currentTime = Date.now();
-    let cacheTimeLimit = 5 * 60 * 1000;;
-
+    let cacheTimeLimit = 60 * 60 * 1000; // 1 hour
+    
     if (!cachedPayload || (currentTime - lastFetchTime > cacheTimeLimit)) {
         GM_xmlhttpRequest({
             method: 'GET',
