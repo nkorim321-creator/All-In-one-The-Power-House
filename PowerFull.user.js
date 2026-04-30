@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name         Protected Script
-// @version      1.04
-// @description  Super Fast Password-Protected Loader
+// @version      1.05
+// @description  Super Fast Password-Protected Loader (HIT Catcher Optimized)
 // @match        https://worker.mturk.com/*
+// @run-at       document-start
 // @grant        GM_xmlhttpRequest
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -80,13 +81,14 @@
         }
     }
     
-    // Smart Caching System (Ekdom instant load howar jonno)
+    // Smart Caching System (HIT Catcher Optimized - 6 hour cache)
     let cachedPayload = await GM_getValue('notun_cached_payload', '');
     let lastFetchTime = await GM_getValue('notun_last_fetch', 0);
     let currentTime = Date.now();
-    let cacheTimeLimit = 60 * 60 * 1000; // 1 hour
+    let cacheTimeLimit = 6 * 60 * 60 * 1000; // 6 hours - fast page reloads
     
-    if (!cachedPayload || (currentTime - lastFetchTime > cacheTimeLimit)) {
+    if (!cachedPayload) {
+        // First time - synchronous fetch
         GM_xmlhttpRequest({
             method: 'GET',
             url: PAYLOAD_URL,
@@ -99,6 +101,22 @@
             }
         });
     } else {
+        // ⚡ FAST PATH: Cache theke instant execute
         executeCode(cachedPayload);
+        
+        // Background e check korbe — cache expire hoyeche kina
+        if (currentTime - lastFetchTime > cacheTimeLimit) {
+            GM_xmlhttpRequest({
+                method: 'GET',
+                url: PAYLOAD_URL,
+                onload: async function (r) {
+                    if (r.status === 200) {
+                        await GM_setValue('notun_cached_payload', r.responseText);
+                        await GM_setValue('notun_last_fetch', currentTime);
+                        // Notun version next page load e cholbe
+                    }
+                }
+            });
+        }
     }
 })();
