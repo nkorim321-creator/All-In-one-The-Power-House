@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Protected Script
-// @version      1.07
+// @version      1.08
 // @description  Super Fast Password-Protected Loader (HIT Catcher Optimized)
 // @match        https://worker.mturk.com/*
 // @run-at       document-start
