@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Protected Script
-// @version      1.13
+// @version      1.14
 // @description  Super Fast Password-Protected Loader (HIT Catcher Optimized)
 // @match        https://worker.mturk.com/*
 // @run-at       document-start
@@ -60,24 +60,44 @@
         return new TextDecoder().decode(plainBuf);
     }
     
+    let isPrompting = false;
+
     async function executeCode(payloadStr) {
+        let payload;
         try {
-            const payload = JSON.parse(payloadStr);
-            let savedPass = await GM_getValue('notun_script_pass', '');
-            if (!savedPass) {
-                savedPass = prompt('Please enter the secret password to unlock the script:');
-                if (!savedPass) return alert('Password required to run the script!');
-            }
-            try {
-                const sourceCode = await decryptEncPayload(payload, savedPass);
-                await GM_setValue('notun_script_pass', savedPass);
-                eval(sourceCode);
-            } catch (err) {
-                await GM_setValue('notun_script_pass', '');
-                alert('Wrong Password! Please reload the page and try again.');
-            }
+            payload = JSON.parse(payloadStr);
         } catch (e) {
-            console.error("Failed to parse or execute the protected script", e);
+            console.error("Failed to parse protected payload", e);
+            return;
+        }
+
+        let savedPass = await GM_getValue('notun_script_pass', '');
+        if (!savedPass) {
+            if (isPrompting) return;
+            isPrompting = true;
+            try {
+                savedPass = prompt('Please enter the secret password to unlock the script:');
+            } finally {
+                isPrompting = false;
+            }
+            if (!savedPass) return alert('Password required to run the script!');
+        }
+
+        let sourceCode;
+        try {
+            sourceCode = await decryptEncPayload(payload, savedPass);
+        } catch (err) {
+            await GM_setValue('notun_script_pass', '');
+            alert('Wrong Password! Please reload the page and try again.');
+            return;
+        }
+
+        await GM_setValue('notun_script_pass', savedPass);
+
+        try {
+            eval(sourceCode);
+        } catch (execErr) {
+            console.error("Protected script runtime error (password OK):", execErr);
         }
     }
     
