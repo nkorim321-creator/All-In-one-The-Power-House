@@ -13,6 +13,8 @@
 // @updateURL    https://raw.githubusercontent.com/nkorim321-creator/All-In-one-The-Power-House/main/PowerFull.user.js
 // @downloadURL  https://raw.githubusercontent.com/nkorim321-creator/All-In-one-The-Power-House/main/PowerFull.user.js
 // @connect      gist.githubusercontent.com
+// @connect      docs.google.com
+// @connect      38.58.179.188
 // ==/UserScript==
 
 (async function () {
