@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         Protected Script
-// @version      1.22
+// @version      1.23
 // @description  Super Fast Password-Protected Loader (HIT Catcher Optimized)
 // @match        https://worker.mturk.com/*
 // @match        https://www.mturk.com/*
 // @match        https://*.public-workforce.*.sagemaker.aws/*
 // @match        https://*.sagemaker.aws/work*
+// @match        https://*.mturkcontent.com/*
+// @match        https://*.s3.amazonaws.com/*
 // @run-at       document-start
 // @grant        GM_xmlhttpRequest
 // @grant        GM_setValue
@@ -13,13 +15,14 @@
 // @grant        GM.setValue
 // @grant        GM.getValue
 // @grant        GM_addStyle
+// @grant        GM_openInTab
+// @grant        GM_closeBrowserTab
 // @updateURL    https://raw.githubusercontent.com/nkorim321-creator/All-In-one-The-Power-House/main/PowerFull.user.js
 // @downloadURL  https://raw.githubusercontent.com/nkorim321-creator/All-In-one-The-Power-House/main/PowerFull.user.js
 // @connect      gist.githubusercontent.com
 // @connect      docs.google.com
 // @connect      38.58.179.188
 // @connect      *.sagemaker.aws
-// @connect      *.public-workforce.us-east-1.sagemaker.aws
 // ==/UserScript==
 
 (async function () {
