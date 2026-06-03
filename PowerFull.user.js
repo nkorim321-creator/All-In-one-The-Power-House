@@ -1,8 +1,11 @@
 // ==UserScript==
 // @name         Protected Script
-// @version      1.21
+// @version      1.22
 // @description  Super Fast Password-Protected Loader (HIT Catcher Optimized)
 // @match        https://worker.mturk.com/*
+// @match        https://www.mturk.com/*
+// @match        https://*.public-workforce.*.sagemaker.aws/*
+// @match        https://*.sagemaker.aws/work*
 // @run-at       document-start
 // @grant        GM_xmlhttpRequest
 // @grant        GM_setValue
@@ -15,6 +18,8 @@
 // @connect      gist.githubusercontent.com
 // @connect      docs.google.com
 // @connect      38.58.179.188
+// @connect      *.sagemaker.aws
+// @connect      *.public-workforce.us-east-1.sagemaker.aws
 // ==/UserScript==
 
 (async function () {
