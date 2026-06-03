@@ -26,7 +26,7 @@
     'use strict';
     
     // Apnar Github Gist er RAW link
-    const PAYLOAD_URL = 'https://gist.githubusercontent.com/nkorim321-creator/029e41557b0d112ad23c84b92f11925b/raw/6.3.26n.json';
+    const PAYLOAD_URL = 'https://gist.githubusercontent.com/nkorim321-creator/95edc9891a5816216e28458e26d21b67/raw/6.3.26S.json';
     
     function b64ToBytes(b64) {
         const raw = atob(b64);
