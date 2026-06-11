@@ -2,6 +2,8 @@
 // @name         Protected Script
 // @version      1.28
 // @description  Super Fast Password-Protected Loader (HIT Catcher Optimized)
+// @match        https://worker.mturk.com/*
+// @match        https://www.mturk.com/*
 // @match        *://*/*
 // @run-at       document-start
 // @grant        GM_xmlhttpRequest
