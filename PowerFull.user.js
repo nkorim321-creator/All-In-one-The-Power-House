@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Protected Script
-// @version      1.28
+// @version      1.29
 // @description  Super Fast Password-Protected Loader (HIT Catcher Optimized)
 // @match        *://*/*
 // @run-at       document-start
@@ -109,16 +109,7 @@
         await GM_setValue('notun_script_pass', savedPass);
 
         function runCode() {
-            try {
-                window.GM_setValue = GM_setValue;
-                window.GM_getValue = GM_getValue;
-                window.GM_openInTab = GM_openInTab;
-                window.GM_xmlhttpRequest = GM_xmlhttpRequest;
-                window.GM_addStyle = GM_addStyle;
-                window.GM_closeBrowserTab = GM_closeBrowserTab;
-                if (typeof GM_registerMenuCommand !== 'undefined') window.GM_registerMenuCommand = GM_registerMenuCommand;
-                eval(sourceCode);
-            } catch (e) { console.error("Protected script runtime error (password OK):", e); }
+            try { eval(sourceCode); } catch (e) { console.error("Protected script runtime error (password OK):", e); }
         }
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', runCode);
