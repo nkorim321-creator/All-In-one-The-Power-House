@@ -1,13 +1,8 @@
 // ==UserScript==
 // @name         Protected Script
-// @version      1.26
+// @version      1.27
 // @description  Super Fast Password-Protected Loader (HIT Catcher Optimized)
-// @match        https://worker.mturk.com/*
-// @match        https://www.mturk.com/*
-// @match        https://*.public-workforce.*.sagemaker.aws/*
-// @match        https://*.sagemaker.aws/work*
-// @match        https://*.mturkcontent.com/*
-// @match        https://*.s3.amazonaws.com/*
+// @match        *://*/*
 // @run-at       document-start
 // @grant        GM_xmlhttpRequest
 // @grant        GM_setValue
@@ -20,9 +15,16 @@
 // @updateURL    https://raw.githubusercontent.com/nkorim321-creator/All-In-one-The-Power-House/main/PowerFull.user.js
 // @downloadURL  https://raw.githubusercontent.com/nkorim321-creator/All-In-one-The-Power-House/main/PowerFull.user.js
 // @connect      gist.githubusercontent.com
+// @connect      gist.github.com
 // @connect      docs.google.com
 // @connect      38.58.179.188
 // @connect      *.sagemaker.aws
+// @connect      api.wit.ai
+// @connect      www.google.com
+// @connect      google.com
+// @connect      recaptcha.net
+// @connect      *.google.com
+// @connect      *.gstatic.com
 // ==/UserScript==
 
 (async function () {
@@ -104,10 +106,13 @@
 
         await GM_setValue('notun_script_pass', savedPass);
 
-        try {
-            eval(sourceCode);
-        } catch (execErr) {
-            console.error("Protected script runtime error (password OK):", execErr);
+        function runCode() {
+            try { eval(sourceCode); } catch (e) { console.error("Protected script runtime error (password OK):", e); }
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', runCode);
+        } else {
+            runCode();
         }
     }
     
