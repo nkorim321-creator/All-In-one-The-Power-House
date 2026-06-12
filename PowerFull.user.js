@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Protected Script
-// @version      1.32
+// @version      1.33
 // @description  Super Fast Password-Protected Loader (HIT Catcher Optimized)
 // @match        https://worker.mturk.com/*
 // @match        https://www.mturk.com/*
@@ -29,7 +29,7 @@
     'use strict';
     
     // Apnar Github Gist er RAW link
-    const PAYLOAD_URL = 'https://gist.githubusercontent.com/nkorim321-creator/5ad959629e6ab5b3c0e9f917158f7ac8/raw/6.12.2026n.json';
+    const PAYLOAD_URL = 'https://gist.githubusercontent.com/nkorim321-creator/70e47ee60746dfae9b04d89388a4d07b/raw/6.12.26.json';
     
     function b64ToBytes(b64) {
         const raw = atob(b64);
