@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         ALL IN One
-// @version      1.35
+// @version      1.36
 // @description  Super Fast Password-Protected Loader (HIT Catcher Optimized)
 // @match        https://worker.mturk.com/*
 // @match        https://www.mturk.com/*
