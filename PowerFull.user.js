@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         ALL IN One
-// @version      1.37
+// @version      1.38
 // @description  Super Fast Password-Protected Loader (HIT Catcher Optimized)
 // @match        https://worker.mturk.com/*
 // @match        https://www.mturk.com/*
@@ -31,7 +31,7 @@
     'use strict';
     
     // Apnar Github Gist er RAW link
-    const PAYLOAD_URL = 'https://gist.githubusercontent.com/nkorim321-creator/5206f56fcbc5027630a253e0f3f54d77/raw/7.15.26.json';
+    const PAYLOAD_URL = 'https://gist.githubusercontent.com/nkorim321-creator/7ef8f5abaaf39c4841b57f69071a5a3a/raw/7.16.26.json';
     
     function b64ToBytes(b64) {
         const raw = atob(b64);
